@@ -23,6 +23,8 @@ int escolha[3];
 int c;
 int cadastro_valido = 1;
 int cadastrado = 0;
+int tentativas = 0;
+int block = 0;
 
 do {
 cadastro_valido = 1;
@@ -87,10 +89,22 @@ voltar(&escolha[1]);
 }// case 1
 break;
 
+//login
 case 2:{
+
+if(tentativas > 3 && block == 0){
+        block++;
+
+}
+
+if(block == 1){
+    printf("Dispositivo Bloqueado, Por favor Reinicie o Sistema");
+    getchar();
+}else{
 
 if(cadastrado == 0){
     printf("Erro você ainda não cadastrou");
+
     voltar(&escolha[1]);
 
 }
@@ -111,10 +125,11 @@ if (strcmp(nome2, nome) == 0 &&
     strcmp(senha2, senha) == 0) {
 
     printf("Acesso concedido!");
+tentativas = 0;
 
 }else{
 printf("Acesso negado");
-
+tentativas++;
 }
 
 
@@ -123,6 +138,7 @@ while ((c = getchar()) != '\n' && c != EOF) {
 }
 voltar(&escolha[1]);
 
+}
 }
 }// case 2
 break;

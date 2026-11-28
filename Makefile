@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
-ARQUIVOS = main.c
+ARQUIVOS = Main.c
 PROGRAMA = programa
 
 all: $(PROGRAMA)

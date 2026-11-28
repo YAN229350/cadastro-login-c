@@ -25,6 +25,8 @@ int cadastro_valido = 1;
 int cadastrado = 0;
 int tentativas = 0;
 int block = 0;
+char confirmar_senha[51];
+char confirmar_nome[22];
 
 do {
 cadastro_valido = 1;
@@ -55,11 +57,25 @@ cadastrado = 0;
 while ((c = getchar()) != '\n' && c != EOF) {
     // descarta os caracteres restantes
 }
-
 voltar(&escolha[1]);
 
 
-}// if do nome
+
+}else {
+system("cls");
+printf("Confirmar nome de usuário");
+printf("\nDigite nome de usuário novamente: ");
+fgets(confirmar_nome, sizeof(confirmar_nome), stdin);
+confirmar_nome[strcspn(confirmar_nome, "\n")] = '\0';
+
+
+if(strcmp(confirmar_nome, nome) != 0){
+  printf("Erro o nome não é igual");
+ cadastro_valido = 0;
+    cadastrado = 0;
+  voltar(&escolha[1]);
+}else{
+
 
 if(cadastro_valido == 1){
 printf("Crie sua senha: ");
@@ -80,13 +96,29 @@ voltar(&escolha[1]);
 
 
 }// if da senha
-else {
+if(cadastro_valido == 1){
+system("cls");
+printf("Confirmar senha de usuário");
+printf("\nPor favor Digite sua senha novamente: ");
+fgets(confirmar_senha, sizeof(confirmar_senha), stdin);
+confirmar_senha[strcspn(confirmar_senha, "\n")] = '\0';
+
+if(strcmp(confirmar_senha, senha) != 0){
+    printf("\nA senhas não são iguais");
+     cadastro_valido = 0;
+    cadastrado = 0;
+}else{
     printf("Cadastro concluído!");
     cadastrado = 1;
 }
-}
+
 voltar(&escolha[1]);
+
+} //else de confirmar nome
+}// else de confirmar senha
+}// if cadastro válido
 }// case 1
+}// else do if de tamanho do nome
 break;
 
 //login
